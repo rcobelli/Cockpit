@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /Backend
+    destination: /var/www/html/cockpit
+hooks:
+  AfterInstall:
+    - location: appspec.sh
+      timeout: 300
+      runas: ec2-user
