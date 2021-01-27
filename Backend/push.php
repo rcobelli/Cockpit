@@ -19,8 +19,6 @@ use Aws\Sns\Exception\InvalidSnsMessageException;
 $message = Message::fromRawPostData();
 $validator = new MessageValidator();
 
-error_log("Alpha",0);
-
 // Validate the message and log errors if invalid.
 try {
    $validator->validate($message);
@@ -30,8 +28,6 @@ try {
    error_log('SNS Message Validation Error: ' . $e->getMessage(), 0);
    die();
 }
-error_log("Bravo",0);
-
 
 // Check the type of the message and handle the subscription.
 if ($message['Type'] === 'SubscriptionConfirmation') {
@@ -39,14 +35,8 @@ if ($message['Type'] === 'SubscriptionConfirmation') {
    file_get_contents($message['SubscribeURL']);
 }
 
-error_log("Charlie",0);
-
-
-error_log($message,0);
-error_log($message['Message'],0);
-
 if ($message['Type'] === 'Notification') {
-    $messageBody = $message['Message'];
+    $messageBody = json_decode($message['Message']);
 
     include 'apns.php';
 }
