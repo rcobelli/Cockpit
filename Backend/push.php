@@ -29,7 +29,10 @@ try {
    die();
 }
 
-error_log(print_r($message), 1, "ryan.cobelli@gmail.com");
+$myfile = fopen("../logs.txt", "a") or die("Unable to open file!");
+$txt = print_r($message);
+fwrite($myfile, "\n". $txt);
+fclose($myfile);
 
 // Check the type of the message and handle the subscription.
 if ($message['Type'] === 'SubscriptionConfirmation') {
