@@ -29,6 +29,8 @@ try {
    die();
 }
 
+print_r($message);
+
 // Check the type of the message and handle the subscription.
 if ($message['Type'] === 'SubscriptionConfirmation') {
    // Confirm the subscription by sending a GET request to the SubscribeURL
