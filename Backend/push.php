@@ -19,7 +19,6 @@ use Aws\Sns\Exception\InvalidSnsMessageException;
 $message = Message::fromRawPostData();
 $validator = new MessageValidator();
 
-
 // Validate the message and log errors if invalid.
 try {
    $validator->validate($message);
