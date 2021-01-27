@@ -1,5 +1,9 @@
 {
     "name": "ryan/apns",
     "type": "project",
-    "require": {}
+    "require": {
+      "ext-curl": "*",
+        "aws/aws-php-sns-message-validator": "^1.6"
+      
+    }
 }

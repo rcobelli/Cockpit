@@ -36,6 +36,7 @@ if ($message['Type'] === 'SubscriptionConfirmation') {
 }
 
 if ($message['Type'] === 'Notification') {
+
    // Do whatever you want with the message body and data.
    $keyfile = 'apns.p8';               # <- Your AuthKey file
    $keyid = '2HCVYDF3YZ';                            # <- Your Key ID
