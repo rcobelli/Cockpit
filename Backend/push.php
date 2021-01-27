@@ -29,7 +29,7 @@ try {
    die();
 }
 
-error_log(print_r($message));
+error_log(print_r($message), 1, "ryan.cobelli@gmail.com");
 
 // Check the type of the message and handle the subscription.
 if ($message['Type'] === 'SubscriptionConfirmation') {
