@@ -19,10 +19,6 @@ use Aws\Sns\Exception\InvalidSnsMessageException;
 $message = Message::fromRawPostData();
 $validator = new MessageValidator();
 
-$myfile = fopen("../logs.txt", "a") or die("Unable to open file!");
-$txt = var_dump($_REQUEST);
-fwrite($myfile, $txt);
-fclose($myfile);
 
 // Validate the message and log errors if invalid.
 try {
