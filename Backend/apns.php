@@ -8,6 +8,10 @@ $bundleid = 'com.rybel-llc.cockpit';                # <- Your Bundle ID
 $url = 'https://api.development.push.apple.com';  # <- development url, or use http://api.push.apple.com for production environment
 $token = '08a59369c68c75cf70454faba416326e8f764da47d29b83e3d6649158f760de3';              # <- Device Token
 
+if (empty($messageBody->detail->pipeline)) {
+    die();
+}
+
 $message = '{"aps":{"alert":"' . $messageBody->detail->pipeline . " " . $messageBody->detail->state . '","sound":"default"}}';
 
 $key = openssl_pkey_get_private('file://'.$keyfile);
