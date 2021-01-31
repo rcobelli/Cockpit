@@ -1,0 +1,15 @@
+{
+  "source": [
+    "aws.codepipeline"
+  ],
+  "detail-type": [
+    "CodePipeline Pipeline Execution State Change"
+  ],
+  "detail": {
+    "state": [
+      "STARTED",
+      "SUCCEEDED",
+      "FAILED"
+    ]
+  }
+}
