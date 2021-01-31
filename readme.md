@@ -1,5 +1,5 @@
 # Cockpit 🚁
-##### A macOS app that shows the status of all your AWS Pipelines
+##### An app that alerts you to the status of all your AWS Pipelines
 
 ![Screenshot](screenshot.png)
 
