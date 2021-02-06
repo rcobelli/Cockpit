@@ -6,7 +6,7 @@ $keyid = '2HCVYDF3YZ';                            # <- Your Key ID
 $teamid = 'AL6H9GEC6N';                           # <- Your Team ID (see Developer Portal)
 $bundleid = 'com.rybel-llc.cockpit';                # <- Your Bundle ID
 $url = 'https://api.development.push.apple.com';  # <- development url, or use http://api.push.apple.com for production environment
-$token = '08a59369c68c75cf70454faba416326e8f764da47d29b83e3d6649158f760de3';              # <- Device Token
+$token = '8c9d7f841431759829a2248eb0e1812e92745371ef4193fb3cdde1736ae24993';              # <- Device Token
 
 if (empty($messageBody->detail->pipeline)) {
     die();
