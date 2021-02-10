@@ -1,60 +1,59 @@
 <?php
 
-// Do whatever you want with the message body and data.
-$keyfile = 'apns.p8';               # <- Your AuthKey file
-$keyid = '2HCVYDF3YZ';                            # <- Your Key ID
-$teamid = 'AL6H9GEC6N';                           # <- Your Team ID (see Developer Portal)
-$bundleid = 'com.rybel-llc.cockpit';                # <- Your Bundle ID
-$url = 'https://api.development.push.apple.com';  # <- development url, or use http://api.push.apple.com for production environment
-$token = '8c9d7f841431759829a2248eb0e1812e92745371ef4193fb3cdde1736ae24993';              # <- Device Token
+function sendPush($message) {
+    // Do whatever you want with the message body and data.
+    $keyfile = 'apns.p8';               # <- Your AuthKey file
+    $keyid = '2HCVYDF3YZ';                            # <- Your Key ID
+    $teamid = 'AL6H9GEC6N';                           # <- Your Team ID (see Developer Portal)
+    $bundleid = 'com.rybel-llc.cockpit';                # <- Your Bundle ID
+    $url = 'https://api.development.push.apple.com';  # <- development url, or use http://api.push.apple.com for production environment
+    $token = '8c9d7f841431759829a2248eb0e1812e92745371ef4193fb3cdde1736ae24993';              # <- Device Token
 
-if (empty($messageBody->detail->pipeline)) {
-    die();
-}
 
-$message = '{"aps":{"alert":"' . $messageBody->detail->pipeline . " " . $messageBody->detail->state . '","sound":"default"}}';
+    $message = '{"aps":{"alert":"' . $message . '","sound":"default"}}';
 
-$key = openssl_pkey_get_private('file://'.$keyfile);
+    $key = openssl_pkey_get_private('file://'.$keyfile);
 
-$header = ['alg'=>'ES256','kid'=>$keyid];
-$claims = ['iss'=>$teamid,'iat'=>time()];
+    $header = ['alg'=>'ES256','kid'=>$keyid];
+    $claims = ['iss'=>$teamid,'iat'=>time()];
 
-$header_encoded = base64($header);
-$claims_encoded = base64($claims);
+    $header_encoded = base64($header);
+    $claims_encoded = base64($claims);
 
-$signature = '';
-openssl_sign($header_encoded . '.' . $claims_encoded, $signature, $key, 'sha256');
-$jwt = $header_encoded . '.' . $claims_encoded . '.' . base64_encode($signature);
+    $signature = '';
+    openssl_sign($header_encoded . '.' . $claims_encoded, $signature, $key, 'sha256');
+    $jwt = $header_encoded . '.' . $claims_encoded . '.' . base64_encode($signature);
 
-// only needed for PHP prior to 5.5.24
-if (!defined('CURL_HTTP_VERSION_2_0')) {
-    define('CURL_HTTP_VERSION_2_0', 3);
-}
+    // only needed for PHP prior to 5.5.24
+    if (!defined('CURL_HTTP_VERSION_2_0')) {
+        define('CURL_HTTP_VERSION_2_0', 3);
+    }
 
-$http2ch = curl_init();
-curl_setopt_array($http2ch, array(
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
-    CURLOPT_URL => "$url/3/device/$token",
-    CURLOPT_PORT => 443,
-    CURLOPT_HTTPHEADER => array(
-        "apns-topic: {$bundleid}",
-        "authorization: bearer $jwt"
-    ),
-    CURLOPT_POST => TRUE,
-    CURLOPT_POSTFIELDS => $message,
-    CURLOPT_RETURNTRANSFER => TRUE,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_HEADER => 1
-));
+    $http2ch = curl_init();
+    curl_setopt_array($http2ch, array(
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0,
+        CURLOPT_URL => "$url/3/device/$token",
+        CURLOPT_PORT => 443,
+        CURLOPT_HTTPHEADER => array(
+            "apns-topic: {$bundleid}",
+            "authorization: bearer $jwt"
+        ),
+        CURLOPT_POST => TRUE,
+        CURLOPT_POSTFIELDS => $message,
+        CURLOPT_RETURNTRANSFER => TRUE,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HEADER => 1
+    ));
 
-$result = curl_exec($http2ch);
-if ($result === FALSE) {
-    throw new Exception("Curl failed: ".curl_error($http2ch));
-}
+    $result = curl_exec($http2ch);
+    if ($result === FALSE) {
+        throw new Exception("Curl failed: ".curl_error($http2ch));
+    }
 
-$status = curl_getinfo($http2ch, CURLINFO_HTTP_CODE);
-echo $status;
+    $status = curl_getinfo($http2ch, CURLINFO_HTTP_CODE);
+    echo $status;
 
-function base64($data) {
-    return rtrim(strtr(base64_encode(json_encode($data)), '+/', '-_'), '=');
+    function base64($data) {
+        return rtrim(strtr(base64_encode(json_encode($data)), '+/', '-_'), '=');
+    }
 }

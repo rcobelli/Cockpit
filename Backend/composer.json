@@ -1,9 +1,10 @@
 {
-    "name": "ryan/apns",
-    "type": "project",
-    "require": {
-      "ext-curl": "*",
-        "aws/aws-php-sns-message-validator": "^1.6",
-      "ext-openssl": "*"
-    }
+  "name": "ryan/apns",
+  "type": "project",
+  "require": {
+    "ext-curl": "*",
+    "aws/aws-php-sns-message-validator": "^1.6",
+    "ext-openssl": "*",
+    "ext-json": "*"
+  }
 }
