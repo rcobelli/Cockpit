@@ -52,8 +52,8 @@ function sendPush($message) {
 
     $status = curl_getinfo($http2ch, CURLINFO_HTTP_CODE);
     echo $status;
+}
 
-    function base64($data) {
-        return rtrim(strtr(base64_encode(json_encode($data)), '+/', '-_'), '=');
-    }
+function base64($data) {
+    return rtrim(strtr(base64_encode(json_encode($data)), '+/', '-_'), '=');
 }
