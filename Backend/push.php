@@ -40,7 +40,7 @@ try {
         sendPush($messageBody->detail->pipeline . " " . $messageBody->detail->state);
     }
 } catch (InvalidSnsMessageException $e) {
-    sendPush("Hello World");
+    sendPush($_POST['message']);
 }
 
 
