@@ -17,12 +17,13 @@ use Aws\Sns\Message;
 use Aws\Sns\MessageValidator;
 use Aws\Sns\Exception\InvalidSnsMessageException;
 
-// Instantiate the Message and Validator
-$message = Message::fromRawPostData();
-$validator = new MessageValidator();
 
 // Validate the message and log errors if invalid.
 try {
+    // Instantiate the Message and Validator
+    $message = Message::fromRawPostData();
+    $validator = new MessageValidator();
+
    $validator->validate($message);
 
     // Check the type of the message and handle the subscription.
@@ -39,7 +40,7 @@ try {
         }
         sendPush($messageBody->detail->pipeline . " " . $messageBody->detail->state);
     }
-} catch (InvalidSnsMessageException $e) {
+} catch (Exception $e) {
     sendPush($_POST['message']);
 }
 
