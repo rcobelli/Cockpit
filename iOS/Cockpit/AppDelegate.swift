@@ -57,6 +57,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
 		let token = tokenParts.joined()
 		print("Device Token: \(token)")
+		
+		let pasteboard = UIPasteboard.general
+		pasteboard.string = token
+		
+		let alertController = UIAlertController(title: "Device Token", message: token, preferredStyle: .alert)
+		let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+		alertController.addAction(action)
+		
+		let keyWindow = UIApplication.shared.windows.filter({$0.isKeyWindow}).first
+		
+		if var topController = keyWindow?.rootViewController {
+			while let presentedViewController = topController.presentedViewController {
+				topController = presentedViewController
+			}
+			
+			topController.present(alertController, animated: true, completion: nil)
+		}
+		
 	}
 	
 	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

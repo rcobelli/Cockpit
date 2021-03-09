@@ -7,7 +7,7 @@ function sendPush($message) {
     $teamid = 'AL6H9GEC6N';                           # <- Your Team ID (see Developer Portal)
     $bundleid = 'com.rybel-llc.cockpit';                # <- Your Bundle ID
     $url = 'https://api.development.push.apple.com';  # <- development url, or use http://api.push.apple.com for production environment
-    $token = '8c9d7f841431759829a2248eb0e1812e92745371ef4193fb3cdde1736ae24993';              # <- Device Token
+    $token = parse_ini_file("config.ini", true)["cp"]["token"];
 
 
     $message = '{"aps":{"alert":"' . $message . '","sound":"default"}}';
