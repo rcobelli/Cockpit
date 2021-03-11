@@ -72,8 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		// Display it to the user
 		let alertController = UIAlertController(title: "Device Token", message: token, preferredStyle: .alert)
-		let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-		alertController.addAction(action)
 		
 		let keyWindow = UIApplication.shared.windows.filter({$0.isKeyWindow}).first
 		
