@@ -58,9 +58,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let token = tokenParts.joined()
 		print("Device Token: \(token)")
 		
+		let url = URL(string: "https://dev.rybel-llc.com/cockpit/register.php?token=" + token)!
+		let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+			guard let data = data else { return }
+			print(String(data: data, encoding: .utf8)!)
+		}
+
+		task.resume()
+		
+		// Copy it to the clipboard
 		let pasteboard = UIPasteboard.general
 		pasteboard.string = token
 		
+		// Display it to the user
 		let alertController = UIAlertController(title: "Device Token", message: token, preferredStyle: .alert)
 		let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
 		alertController.addAction(action)
