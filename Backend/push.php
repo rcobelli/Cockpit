@@ -38,7 +38,14 @@ try {
         if (empty($messageBody->detail->pipeline)) {
             die();
         }
-        sendPush($messageBody->detail->pipeline . " " . $messageBody->detail->state);
+
+        $message = $messageBody->detail->pipeline . " " . $messageBody->detail->state;
+
+        if ($messageBody->detail->state == "FAILED") {
+            $message = "🚨🚨🚨 " . $message . " 🚨🚨🚨";
+        }
+
+        sendPush($message);
     }
 } catch (Exception $e) {
     sendPush($_POST['message']);
