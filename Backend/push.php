@@ -31,7 +31,7 @@ try {
     } else if ($message['Type'] === 'Notification') {
         $messageBody = json_decode($message['Message']);
 
-        if ($messageBody['detail-type'] === 'CodePipeline Pipeline Execution State Change') {
+        if ($messageBody->{'detail-type'} === 'CodePipeline Pipeline Execution State Change') {
             $message = $messageBody->detail->pipeline . " " . $messageBody->detail->state;
 
             if ($messageBody->detail->state == "FAILED") {
@@ -39,12 +39,12 @@ try {
             }
 
             sendPush($message);
-        } else if ($messageBody['detail-type'] === 'CloudWatch Alarm State Change') {
+        } else if ($messageBody->{'detail-type'} === 'CloudWatch Alarm State Change') {
             $message = $messageBody->detail->alarmName . " is now " . $messageBody->detail->state->value;
 
             sendPush($message);
         } else {
-            error_log("Found message-detail type " . $messageBody['detail-type']);
+            error_log("Found message-detail type " . $messageBody->{'detail-type'});
             sendPush($message['Message']);
         }
     } else {
