@@ -42,6 +42,10 @@ try {
         } else if ($messageBody->{'detail-type'} === 'CloudWatch Alarm State Change') {
             $message = $messageBody->detail->alarmName . " is now " . $messageBody->detail->state->value;
 
+            if ($messageBody->detail->state == "ALARM") {
+                $message = "🚨🚨🚨 " . $message . " 🚨🚨🚨";
+            }
+
             sendPush($message);
         } else {
             error_log("Found message-detail type " . $messageBody->{'detail-type'});
