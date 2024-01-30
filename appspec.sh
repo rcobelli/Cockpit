@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /var/www/html/cockpit
+cd /var/www/cockpit
 /usr/local/bin/composer install

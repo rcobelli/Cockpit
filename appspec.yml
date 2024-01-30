@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /Backend
-    destination: /var/www/html/cockpit
+    destination: /var/www/cockpit
 hooks:
   AfterInstall:
     - location: appspec.sh
