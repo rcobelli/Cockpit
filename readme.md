@@ -31,4 +31,6 @@ You can also post messages to `https://<your url>/push.php` using the `message` 
 
 ## Future TODO:
   - Include a history of messages being sent
-  
+  - Make it actually work on mobile
+  - Include branding
+  - Make SSO optional

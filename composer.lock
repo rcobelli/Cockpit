@@ -1306,16 +1306,16 @@
         },
         {
             "name": "rybel-llc/backbone",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Rybel-LLC/Backbone.git",
-                "reference": "1f622f99d8ea3e7a10085b7695a81f241752f712"
+                "reference": "a0bf6f95b7ad2ebcd79672d9eb87af176efe77f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rybel-LLC/Backbone/zipball/1f622f99d8ea3e7a10085b7695a81f241752f712",
-                "reference": "1f622f99d8ea3e7a10085b7695a81f241752f712",
+                "url": "https://api.github.com/repos/Rybel-LLC/Backbone/zipball/a0bf6f95b7ad2ebcd79672d9eb87af176efe77f8",
+                "reference": "a0bf6f95b7ad2ebcd79672d9eb87af176efe77f8",
                 "shasum": ""
             },
             "require": {
@@ -1339,10 +1339,10 @@
             ],
             "description": "Core classes from Rybel projects",
             "support": {
-                "source": "https://github.com/Rybel-LLC/Backbone/tree/1.2.3",
+                "source": "https://github.com/Rybel-LLC/Backbone/tree/1.2.4",
                 "issues": "https://github.com/Rybel-LLC/Backbone/issues"
             },
-            "time": "2024-01-31T02:15:30+00:00"
+            "time": "2024-02-04T19:20:30+00:00"
         },
         {
             "name": "spomky-labs/base64url",
