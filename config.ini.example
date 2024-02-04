@@ -1,0 +1,8 @@
+[cp]
+VAPID_PUBLIC_KEY=12345
+VAPID_PRIVATE_KEY=12345
+VAPID_MAILTO=mailto:vapid@example.com
+db_host = "127.0.0.1"
+db_username = "dev"
+db_password = "1234"
+db_name = "cockpit"

@@ -5,6 +5,14 @@
     "ext-curl": "*",
     "aws/aws-php-sns-message-validator": "^1.6",
     "ext-openssl": "*",
-    "ext-json": "*"
-  }
+    "ext-json": "*",
+    "minishlink/web-push": "*",
+    "rybel-llc/backbone": "1.*"
+  },
+  "repositories": [
+      {
+          "type": "vcs",
+          "url":  "https://github.com/Rybel-LLC/Backbone"
+      }
+  ]
 }
