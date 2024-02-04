@@ -28,3 +28,7 @@ For my personal setup, I mostly use the SNS topic. From the AWS Console:
 as the destination.
 
 You can also post messages to `https://<your url>/push.php` using the `message` POST form field
+
+## Future TODO:
+  - Include a history of messages being sent
+  
