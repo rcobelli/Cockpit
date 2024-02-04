@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /Backend
+  - source: /
     destination: /var/www/cockpit
 hooks:
   AfterInstall:

@@ -4,14 +4,12 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
 
-include 'apns.php';
-
 if ('POST' !== $_SERVER['REQUEST_METHOD']) {
     http_response_code(405);
     die;
 }
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use Aws\Sns\Message;
 use Aws\Sns\MessageValidator;
@@ -60,4 +58,38 @@ try {
     sendPush($_POST['message']);
 }
 
+function sendPush($message) {
+    $title = "Cockpit";
+	$url = "https://dev.rybel-llc.com";
 
+	$apiKey = "";
+
+	$curlUrl = "https://api.pushalert.co/rest/v1/send";
+
+	//POST variables
+	$post_vars = array(
+		"title" => $title,
+		"message" => $message,
+		"url" => $url
+	);
+
+	$headers = Array();
+	$headers[] = "Authorization: api_key=".$apiKey;
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $curlUrl);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post_vars));
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+	$result = curl_exec($ch);
+
+	$output = json_decode($result, true);
+	if($output["success"]) {
+		echo $output["id"]; //Sent Notification ID
+	}
+	else {
+		echo $output; //Others like bad request
+	}
+}
