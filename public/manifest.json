@@ -1,0 +1,17 @@
+{
+    "name": "Cockpit",
+    "short_name": "Cockpit",
+    "description": "Rybel LLC Cockpit",
+    "start_url": "/index.php",
+    "id": "/index.php",
+    "display": "standalone",
+    "background_color": "#343A40",
+    "theme_color": "#ffffff",
+    "icons": [
+      {
+         "src": "/192.png",
+         "sizes": "192x192",
+         "type": "image/png"
+      }
+    ]
+}
