@@ -11,6 +11,7 @@ if ($_COOKIE['debug'] == 'true') {
 
 require_once("vendor/autoload.php");
 include_once("classes/PushHelper.php");
+include_once("classes/DBHelper.php");
 include_once("classes/SubscriptionHelper.php");
 
 $ini = parse_ini_file("config.ini", true)["cp"];
