@@ -35,6 +35,8 @@ class PushHelper extends Helper
 
     public function parse(): string|false
     {
+        $this->log->logmessage(file_get_contents('php://input'));
+        
         // Validate the message and log errors if invalid.
         try {
             // Instantiate the Message and Validator
